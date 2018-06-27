@@ -137,11 +137,11 @@ namespace SwitchTest
             root.Save(path);
         }
 
-        public void setState()
+        public void setState(string keyName)
         {
             try
             {
-                isCheck = bool.Parse(root.Element("switchstate").FirstNode.ToString());
+                isCheck = bool.Parse(root.Element(keyName).FirstNode.ToString());
             }
             catch (Exception ex)
             {
@@ -153,7 +153,7 @@ namespace SwitchTest
 
         private void UserControl1_Load(object sender, EventArgs e)
         {
-            setState();
+            setState("switchstate");
         }
     }
 }

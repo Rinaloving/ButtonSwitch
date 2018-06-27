@@ -35,6 +35,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "UserControl1";
+            this.Load += new System.EventHandler(this.UserControl1_Load);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.UserControl1_MouseClick);
             this.ResumeLayout(false);
 

@@ -7,15 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+using System.Threading;
+using System.Xml.Linq;
 
 namespace SwitchTest
 {
     public enum CheckStyle { style1 = 0 };
+
+    delegate void SetSwitchState(string keyName, string newKeyValue);
+
+
     public partial class UserControl1 : UserControl
     {
+        //string switchstate = root.Element("switchstate").FirstNode.ToString();
+        public static bool isCheck = false;
         public UserControl1()
         {
             InitializeComponent();
+
             //设置Style支持透明背景色并且双缓冲
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             this.SetStyle(ControlStyles.DoubleBuffer, true);
@@ -25,12 +35,16 @@ namespace SwitchTest
             this.SetStyle(ControlStyles.UserPaint, true);
             this.BackColor = Color.Transparent;
 
+
+
+
             this.Cursor = Cursors.Hand;
             this.Size = new Size(87, 27);
         }
+        public static string path = @"myApp.xml";
+        static XElement root = XElement.Load(path); // bin/Debug目录下
 
 
-        bool isCheck = false;
         /// <summary>
         /// 是否选中
         /// </summary>
@@ -64,19 +78,32 @@ namespace SwitchTest
 
 
             Graphics g = e.Graphics;
-            Rectangle rec = new Rectangle(0,0,Size.Width, this.Size.Height);
+            Rectangle rec = new Rectangle(0, 0, Size.Width, this.Size.Height);
+
+
+            //Thread td = new Thread(setState);
+            // td.Start();
 
             if (isCheck)
             {
-                g.DrawImage(bitMapOn,rec);
+                g.DrawImage(bitMapOn, rec);
                 //MessageBox.Show("开关打开了！");
+                //SetSwitchState setSwitch = modifyItem;
+                modifyItem("switchstate", "true");
+                //switchstate = root.Element("switchstate").FirstNode.ToString(); //读取App.config配置文件中的值
+                // this.Invoke(setSwitch);
                 Form1.state = true;
             }
             else
             {
-                g.DrawImage(bitMapOff,rec);
+                g.DrawImage(bitMapOff, rec);
+                //SetSwitchState setSwitch = modifyItem;
+                modifyItem("switchstate", "false");
+                //switchstate = root.Element("switchstate").FirstNode.ToString();  //读取App.config配置文件中的值
+                // this.Invoke(setSwitch);
+
                 Form1.state = false;
-               // MessageBox.Show("开关关闭了！");
+                // MessageBox.Show("开关关闭了！");
             }
         }
         /// <summary>
@@ -89,15 +116,44 @@ namespace SwitchTest
         //    isCheck = !isCheck;
         //    this.Invalidate(); //刷新
         //}
-        private void UserControl1_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void UserControl1_MouseClick(object sender, MouseEventArgs e)
         {
+            //  switchstate = ConfigurationManager.AppSettings["switchstate"].ToString(); //读取App.config配置文件中的值
             isCheck = !isCheck;
             this.Invalidate(); //刷新
+        }
+
+
+
+        /// <summary>
+        /// 修改myApp.xml配置文件中某个节点的值
+        /// </summary>
+        /// <param name="keyName"></param>
+        /// <param name="newKeyValue"></param>
+        public static void modifyItem(string keyName, string newKeyValue)
+        {
+            root.SetElementValue(keyName, newKeyValue);
+            root.Save(path);
+        }
+
+        public void setState()
+        {
+            try
+            {
+                isCheck = bool.Parse(root.Element("switchstate").FirstNode.ToString());
+            }
+            catch (Exception ex)
+            {
+                isCheck = true;
+                throw;
+            }
+
+        }
+
+        private void UserControl1_Load(object sender, EventArgs e)
+        {
+            setState();
         }
     }
 }

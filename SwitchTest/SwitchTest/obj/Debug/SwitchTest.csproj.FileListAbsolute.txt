@@ -8,3 +8,13 @@ D:\陈风龙\SwitchTest\SwitchTest\obj\Debug\SwitchTest.exe
 D:\陈风龙\SwitchTest\SwitchTest\obj\Debug\SwitchTest.pdb
 D:\陈风龙\SwitchTest\SwitchTest\obj\Debug\SwitchTest.Form1.resources
 D:\陈风龙\SwitchTest\SwitchTest\obj\Debug\SwitchTest.csprojResolveAssemblyReference.cache
+D:\GitHub\ButtonSwitch\SwitchTest\SwitchTest\bin\Debug\SwitchTest.exe.config
+D:\GitHub\ButtonSwitch\SwitchTest\SwitchTest\bin\Debug\SwitchTest.exe
+D:\GitHub\ButtonSwitch\SwitchTest\SwitchTest\bin\Debug\SwitchTest.pdb
+D:\GitHub\ButtonSwitch\SwitchTest\SwitchTest\obj\Debug\SwitchTest.Form1.resources
+D:\GitHub\ButtonSwitch\SwitchTest\SwitchTest\obj\Debug\SwitchTest.Properties.Resources.resources
+D:\GitHub\ButtonSwitch\SwitchTest\SwitchTest\obj\Debug\SwitchTest.UserControl1.resources
+D:\GitHub\ButtonSwitch\SwitchTest\SwitchTest\obj\Debug\SwitchTest.csproj.GenerateResource.cache
+D:\GitHub\ButtonSwitch\SwitchTest\SwitchTest\obj\Debug\SwitchTest.csproj.CoreCompileInputs.cache
+D:\GitHub\ButtonSwitch\SwitchTest\SwitchTest\obj\Debug\SwitchTest.exe
+D:\GitHub\ButtonSwitch\SwitchTest\SwitchTest\obj\Debug\SwitchTest.pdb
